@@ -3,12 +3,15 @@ class Solution:
         stack = []
         graph = {"(":")","{":"}","[":"]"}
         for i in s:
-            if i in graph or not stack:
+            if not stack:
                 stack.append(i)
-            elif stack[-1] in graph and graph[stack[-1]] == i :
-                stack.pop()
             else :
-                stack.append(i)
-                
+                if stack[-1] in graph:
+                    if graph[stack[-1]] == i :
+                        stack.pop()
+                    else :
+                        stack.append(i)
+                else :
+                    stack.append(i)
         return not stack
     
